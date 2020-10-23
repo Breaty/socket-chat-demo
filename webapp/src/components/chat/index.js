@@ -12,7 +12,6 @@ function Chat(props){
     const [form] = Form.useForm();
     const sendrefs = useRef(null);
 
-    console.log("message:", props.state)
     const suffix = (
         <AudioOutlined
           style={{
@@ -35,21 +34,21 @@ function Chat(props){
 
     let onSearch = function (text){
         console.log(props)
-        if(!props.state.userInfo.loginState){
+        if(!props.userInfo.loginState){
             alert("请先登录！")
             return;
         }
         console.log("发送我根本：",props, this, sendrefs)
         sendrefs.current.state.value = "";
         // this.refs.searchBar.state.value = '';
-        props.sendMessage(props.state.userInfo._id, props.state.userInfo.username, text);
+        props.sendMessage(props.userInfo._id, props.userInfo.username, text);
         form.resetFields();
         return "";
     }
 
 
-    const uid = props.state.userInfo._id;
-     let messages = props.state.messages;
+    const uid = props.userInfo._id;
+     let messages = props.messages;
 
     return (
         <div className="chat-container">
@@ -87,11 +86,7 @@ function Chat(props){
     )
 }
 
-const mapStateToProps = (state) => {
-    return {
-        state
-    }
-}
+const mapStateToProps = ({userInfo, messages}) => ({userInfo, messages});
 
 const mapActionToProps = (dispatch) => {
     return {

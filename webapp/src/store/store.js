@@ -4,7 +4,6 @@ import thunkMiddleware from 'redux-thunk';
 import rootReducer from "./reducers/index";
 import {CHAT_SEND_MESSAGE} from '../actions/types';    
 import {socket,sendData} from "../until/socket";
-import {Storage} from "../until/until";
 
 const middlewares = [];
 middlewares.push(thunkMiddleware);
@@ -48,12 +47,5 @@ socket.onmessage = (m) => {
 }
 
 
-let storage = new Storage();
-
-let _userInfo = storage.getItem("user");
-
-if(_userInfo){
-    // store.dispatch({type:"CHAT_SEND_MESSAGE", data:{type:"userlogin",username:_userInfo.username, _id: _userInfo._id}});
-}
 
 export default store

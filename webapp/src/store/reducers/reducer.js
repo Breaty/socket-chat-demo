@@ -15,16 +15,20 @@ export function userInfo(state={loginState: false}, action) {
 
     switch (action.type){
         case types.USER_LOGIN:
-            let data = {...state,username:action.username || "游客",_id:action._id,loginState:true};
-            console.log("用户初始化数据：",data );
+            let data = {...state,username:action.username || "游客",_id:action._id,loginState:action.loginState};
 
-            if(action.loginstate){
+            console.log("修改登录状态：", action)
+
+            if(data.loginState){
                 storage.setItem({name:"user",value: data})
             }else{
                 storage.removeItem("user");
             }
             return data;
-       default:
+        case types.USER_LOGIN_OUT:
+            storage.removeItem("user");
+            return {loginState:false};
+        default:
             //这里需要判断是否为undefined
             // return state;
             return state;

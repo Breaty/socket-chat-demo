@@ -43,12 +43,12 @@ function HeaderViewer(props){
                 })
             }
             {/* 未登录 */}
-            {!props.state.userInfo.loginState && <SubMenu key="SubMenu" className="menu-subs" icon={<UserOutlined />}>
+            {!props.userInfo.loginState && <SubMenu key="SubMenu" className="menu-subs" icon={<UserOutlined />}>
                 <Menu.Item key="login-key" className="menu-sub-option">登录</Menu.Item>
                 <Menu.Item key="register-key" className="menu-sub-option">注册</Menu.Item>
             </SubMenu>}
             {/* 已经登录 */}
-            {props.state.userInfo.loginState && <SubMenu  icon={<UserOutlined />} title={props.state.userInfo.username}>
+            {props.userInfo.loginState && <SubMenu  icon={<UserOutlined />} title={props.userInfo.username}>
                 <Menu.Item key="personal-key" className="menu-sub-option"><Link to="/personal"><span>个人中心</span></Link></Menu.Item>
                 <Menu.Item key="loginout-key" className="menu-sub-option">退出</Menu.Item>
             </SubMenu>}
@@ -61,18 +61,12 @@ function HeaderViewer(props){
 
 }
 
-const mapStateToProps = (state) => {
-    return {
-        state:{
-            userInfo:state.userInfo
-        }
-    }
-}
+const mapStateToProps = ({userInfo}) => ({userInfo});
 
 const mapActionToProps = (dispatch) => {
     return {
         changeLoginState: (newState, userName, token) => {
-            dispatch({ type: "CHANGE_LOGIN_STATE", loginstate: newState, userName: userName, token: token })
+            dispatch({ type: "loginout", loginstate: newState, userName: userName, token: token })
         }
     }
 }
