@@ -1,0 +1,5 @@
+{
+    "DB_URL": "mongodb://localhost:27018/socketDemo",
+    "ip": "127.0.0.1",
+    "port": 80
+}

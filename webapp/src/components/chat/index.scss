@@ -1,0 +1,113 @@
+.chat-container{
+    width:90%;
+    max-width: 1000px;
+    margin: 0px auto;
+    margin-bottom: 64px;
+    border: 1px solid #eee;
+    padding: 10px 20px;
+    border-radius: 4px;
+    height: calc( 100vh - 110px );
+
+    .ant-list{
+
+        .ant-list-item{
+            border-bottom: none;
+        }
+        
+        .ant-list-item-meta{
+            .ant-list-item-meta-title{
+                a{
+                    color: rgba(0, 0, 0, 0.45);
+                }
+            } 
+            
+            .ant-list-item-meta-description{
+                color: rgba(0, 0, 0, 0.85);
+                max-width: 60%;
+                border: 1px solid #eee;
+                padding: 10px;
+                border-radius: 4px;
+            }
+        }
+
+        .ant-list-item-meta.right {
+
+            .ant-list-item-meta-title{
+                text-align: right;
+            }
+            .ant-list-item-meta-description{
+                text-align: left;
+                float: right;
+            }
+            .ant-list-item-meta-description::after{
+                width:0px;
+                height:0px;
+                border:10px solid;
+                border-color: #ff0 #f00 #00f;
+            }
+
+            .ant-list-item-meta-avatar{
+                position: absolute;
+                right: 0px;
+                margin-right: 0px;
+            }
+
+            .ant-list-item-meta-content{
+                margin-right: 48px;
+            }
+        }
+
+        .ant-list-item-meta.left {
+
+            .ant-list-item-meta-title, .ant-list-item-meta-description{
+                text-align: left;
+            }
+            .ant-list-item-meta-description{
+                float: left;
+            }
+        }
+
+       
+    }
+
+    .ant-input-group-wrapper{
+        position: fixed;
+        bottom: 0px;
+        left: 0px;
+        width: 100%;
+        padding: 10px 5%;
+        background: #fff;
+    }
+
+    .chat-content{
+        background-color: #ff0;
+        border: 1px solid #eee;
+        height: calc(80vh - 40px);
+
+        .msg-content{
+            max-width: 94%;
+            margin: 0 auto;
+
+            .ant-avatar.ant-avatar-icon{
+                margin: 4px;
+                vertical-align: top;
+            }
+            .msg-text{
+                display: inline-block;
+                width: calc(60% - 30px);
+                word-break: break-all;
+            }
+
+         
+        }
+
+        .msg-content.left > div{
+            text-align: left;
+        }
+
+        .msg-content.right > div{
+            text-align: right;
+        }
+      
+    }
+}
