@@ -7,7 +7,6 @@ let socket=  null;
 let socketurl = `ws://${window.location.hostname}:81/`;
 
 function sendData(data){
-    console.log("数据不对：",data)
     if(socket) socket.send(JSON.stringify(data))
 }
 
@@ -19,7 +18,6 @@ function createSocket(){
         let storage = new Storage();
 
         let _userInfo = storage.getItem("user");
-        console.log("用户数据：", _userInfo)
         if(_userInfo){
             sendData({type:"userlogin",username:_userInfo.username, _id: _userInfo._id});
         }

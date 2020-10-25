@@ -17,8 +17,6 @@ export function userInfo(state={loginState: false}, action) {
         case types.USER_LOGIN:
             let data = {...state,username:action.username || "游客",_id:action._id,loginState:action.loginState};
 
-            console.log("修改登录状态：", action)
-
             if(data.loginState){
                 storage.setItem({name:"user",value: data})
             }else{
@@ -41,7 +39,6 @@ export function onNewMessage(state = [], action){
         case types.NEW_MESSAGE:
             let data = action;
             
-            console.log("收到消息：",state,data, initialState.messages);
             initialState.messages.push(data);
 
             return [...initialState.messages];

@@ -1,10 +1,14 @@
 import { connect } from 'react-redux';
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import {Menu}  from "antd";
 import { UserOutlined, AppstoreOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import "./index.scss"
 import LoginForm from "../login/index"
+import {Storage} from "../../until/until";
+
+
+let storage = new Storage();
 
 const {SubMenu} = Menu;
 
@@ -17,7 +21,6 @@ function HeaderViewer(props){
 
     const [currentkey,setCurrentkey] = useState("meanu-0");
     const [showLogin,setShowLogin] = useState(false);
-    console.log("headerjs收到的参数：", props)
 
     function switchPage(page){
         setCurrentkey(page.key);
@@ -29,6 +32,16 @@ function HeaderViewer(props){
             props.changeLoginState(false, "", "");
         }
     }
+
+    useEffect(()=>{
+
+        let user = storage.getItem("user")
+
+        if(!user && !props.userInfo.loginState){
+            setShowLogin(true);
+        }
+
+    },[])
 
     return (
         <div className="header-container clearfix">
@@ -54,7 +67,7 @@ function HeaderViewer(props){
             </SubMenu>}
             </Menu>
            { showLogin ? 
-              <LoginForm showLogin={showLogin}></LoginForm>
+              <LoginForm showLogin={showLogin} onChangeVisible={(bool)=>{setShowLogin(bool)}}></LoginForm>
             : ""}
         </div>
     )

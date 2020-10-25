@@ -38,7 +38,6 @@ function Chat(props){
             alert("请先登录！")
             return;
         }
-        console.log("发送我根本：",props, this, sendrefs)
         sendrefs.current.state.value = "";
         // this.refs.searchBar.state.value = '';
         props.sendMessage(props.userInfo._id, props.userInfo.username, text);
@@ -73,7 +72,7 @@ function Chat(props){
         >
         <Search
         ref={sendrefs}
-                placeholder="input your text"
+                placeholder="随便说点什么吧"
                 enterButton="发送"
                 size="large"
                 suffix={suffix}

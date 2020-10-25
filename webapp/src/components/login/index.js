@@ -34,13 +34,17 @@ function LoginForm(props) {
     setShowLogin(false);
   };
 
+  const onclose = ()=>{
+    setShowLogin(false);
+    props.onChangeVisible(false)
+  }
+
   return (
     // <div className="login-container">
       <Modal 
-          
           visible={showLogin} 
           footer={null}
-          onCancel={()=>{setShowLogin(false)}}
+          onCancel={onclose}
           >
     <div className="login-container">
         <Form

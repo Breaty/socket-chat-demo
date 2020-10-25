@@ -11,7 +11,6 @@ middlewares.push(thunkMiddleware);
 const webSocketMiddleware = store => next => action => {
     if(CHAT_SEND_MESSAGE === action.type) {
         if(null !== socket) {
-            console.log("發送消息！：",action)
             sendData(action.data);
         }
     }
