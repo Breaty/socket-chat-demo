@@ -46,7 +46,6 @@ function deleteCollection(id){
 
 wss = new WebSocketServer({ port: PORT+1 });
 
-console.log("\n websocket listen at : ",  PORT+1,'\n');
 
 
 wss.on('connection', function (ws) {
@@ -83,15 +82,13 @@ wss.on('connection', function (ws) {
         else if (message.type==="userlogin"){
             ws.id = message._id ? ObjectId(message._id): ObjectId();
             ws.username = message.username;
-            let data = {type:"userlogin", _id: ws.id, username: message.username};
-            console.log("用户初始化登录：",message, data)
+            let data = {type:"userlogin", _id: ws.id, username: message.username,loginState:true};
             ws.send(JSON.stringify(data));
             addCollection(ws.id,ws);
         }
 
         else if (message.type ==='newMessage'){
             broadcast(message);
-            // assetService.resetData({groupid: message.groupid});
         }
     
     });
@@ -127,6 +124,7 @@ function broadcast(data){
     });
 }
 
+console.log("\n websocket listen at : ",  PORT+1,'\n');
 
 module.exports = {
 
